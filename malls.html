@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nearby Malls</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@400;600&family=Orbitron:wght@500&family=Allura&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: 'Raleway', sans-serif;
+      background: linear-gradient(-45deg, #ffe0ec, #e0f7fa, #e8eaf6, #f3e5f5);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      font-size: 3rem;
+      color: #4a148c;
+      margin-bottom: 30px;
+    }
+
+    .filter-bar {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .filter-bar label {
+      margin: 0 10px;
+      font-size: 1rem;
+      color: #4a148c;
+    }
+
+    .filter-bar input[type="checkbox"] {
+      margin-right: 6px;
+      transform: scale(1.2);
+      accent-color: #6a1b9a;
+    }
+
+    .mall-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .mall-card {
+      background: #ffffffdd;
+      border-radius: 30px 5px 30px 5px;
+      padding: 25px;
+      position: relative;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+      border-left: 6px solid #ba68c8;
+    }
+
+    .mall-card:hover {
+      transform: scale(1.03);
+    }
+
+    .mall-card h2 {
+      font-size: 1.6rem;
+      color: #5cc6f3;
+      margin-bottom: 12px;
+      font-family: 'abel', sans-serif;
+    }
+
+    .mall-card p {
+      margin: 6px 0;
+      color: #333;
+      font-size: 0.95rem;
+    }
+
+    .facility {
+      display: inline-block;
+      background: #f3e5f5;
+      color: #4a148c;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin: 2px 4px;
+    }
+
+    .more-info-btn,
+    .location-btn {
+      margin-top: 15px;
+      display: inline-block;
+      background-color: #6a1b9a;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      margin-right: 10px;
+    }
+
+    .more-info-btn:hover,
+    .location-btn:hover {
+      background-color: #4a148c;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Nearby Malls</h1>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <label><input type="checkbox" value="Clothing" onchange="filterMalls()">Clothing</label>
+    <label><input type="checkbox" value="Food" onchange="filterMalls()">Food</label>
+    <label><input type="checkbox" value="Gaming" onchange="filterMalls()">Gaming</label>
+    <label><input type="checkbox" value="Movie" onchange="filterMalls()">Movie</label>
+    <label><input type="checkbox" value="Slippers" onchange="filterMalls()">Slippers</label>
+    <label><input type="checkbox" value="Groceries" onchange="filterMalls()">Groceries</label>
+  </div>
+
+  <div class="mall-grid">
+
+    <div class="mall-card" data-tags="Groceries,Clothing,Food,Gaming">
+      <h2>🏙️ Skyline Mall</h2>
+      <p><strong>📍 Distance:</strong> 1.2 km</p>
+      <p><strong>🛍️ Categories:</strong> Groceries, Clothing, Food, Gaming</p>
+      <p><strong>🚗 Parking:</strong> Underground Parking(available)</p>
+      <p><strong>🕒 Open:</strong> 9:00 AM – 10:00 PM</p>
+      <p><strong>👥 Crowd:</strong> Moderate</p>
+      <p><strong>🎯 Facilities:</strong>
+        <span class="facility">Wi-Fi</span>
+        <span class="facility">ATM</span>
+        <span class="facility">🍔 Food Court</span>
+      </p>
+      <a href="categories.html?mall=Skyline Mall" class="more-info-btn">More Info</a>
+
+      <a class="location-btn" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=Skyline+Mall">Get Directions</a>
+    </div>
+
+    <div class="mall-card" data-tags="Movie,Food,Electronics,Clothing">
+      <h2>🏬 Metro Central</h2>
+      <p><strong>📍 Distance:</strong> 2.5 km</p>
+      <p><strong>🛍️ Categories:</strong> Movie, Food, Electronics, Clothing</p>
+      <p><strong>🚗 Parking:</strong> Open Parking(few slots available)</p>
+      <p><strong>🕒 Open:</strong> 10:00 AM – 11:00 PM</p>
+      <p><strong>👥 Crowd:</strong> High</p>
+      <p><strong>🎯 Facilities:</strong>
+        <span class="facility">Lounge</span>
+        <span class="facility">🔌 Charging</span>
+      </p>
+      <a href="categories.html?mall=Metro Central" class="more-info-btn">More Info</a>
+      <a class="location-btn" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=Metro+Central">Get Directions</a>
+    </div>
+
+    <div class="mall-card" data-tags="Clothing,Slippers,Food">
+      <h2>🛒 Galaxy Plaza</h2>
+      <p><strong>📍 Distance:</strong> 3.1 km</p>
+      <p><strong>🛍️ Categories:</strong> Clothing, Slippers, Food</p>
+      <p><strong>🚗 Parking:</strong> Underground Parking(slots full)</p>
+      <p><strong>🕒 Open:</strong> 8:30 AM – 9:00 PM</p>
+      <p><strong>👥 Crowd:</strong> Low</p>
+      <p><strong>🎯 Facilities:</strong>
+        <span class="facility">👶 Kids Zone</span>
+        <span class="facility">🏥 Medical</span>
+      </p>
+      <a href="categories.html?mall=Galaxy Plaza" class="more-info-btn">More Info</a>
+      <a class="location-btn" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=Galaxy+Plaza">Get Directions</a>
+    </div>
+
+    <div class="mall-card" data-tags="Gaming,Movie,Food">
+      <h2>🎮 Urban Edge Mall</h2>
+      <p><strong>📍 Distance:</strong> 4.0 km</p>
+      <p><strong>🛍️ Categories:</strong> Gaming, Movie, Food</p>
+      <p><strong>🚗 Parking:</strong> Open Parking(available)</p>
+      <p><strong>🕒 Open:</strong> 11:00 AM – 10:30 PM</p>
+      <p><strong>👥 Crowd:</strong> Moderate</p>
+      <p><strong>🎯 Facilities:</strong>
+        <span class="facility">💪 Fitness</span>
+        <span class="facility">🅿️ Valet</span>
+      </p>
+      <a href="categories.html?mall=Urban Edge Mall" class="more-info-btn">More Info</a>
+      <a class="location-btn" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=Urban+Edge+Mall">Get Directions</a>
+    </div>
+
+  </div>
+
+  <script>
+    function filterMalls() {
+      const checkboxes = document.querySelectorAll('.filter-bar input[type="checkbox"]:checked');
+      const selected = Array.from(checkboxes).map(cb => cb.value);
+      const mallCards = document.querySelectorAll('.mall-card');
+
+      mallCards.forEach(card => {
+        const tags = card.getAttribute('data-tags');
+        const matches = selected.every(tag => tags.includes(tag));
+        card.classList.toggle('hidden', selected.length > 0 && !matches);
+      });
+    }
+  </script>
+</body>
+</html>

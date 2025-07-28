@@ -1,0 +1,71 @@
+<!-- location.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Location - Smart Mall Navigator</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Select Your Location</h1>
+    <p>You can enter it manually or fetch your current location</p>
+
+    <div class="form-box">
+      <input type="text" id="manualLocation" placeholder="Enter your location manually" />
+      <button class="btn" onclick="useManualLocation()">Use Manual Location</button>
+
+      <p style="margin: 1rem 0;">— OR —</p>
+
+      <button class="btn" onclick="getCurrentLocation()">Get Current Location</button>
+      <p id="locationResult" style="margin-top: 1rem; color: #00e6e6;"></p>
+
+      <br/><br/>
+      <button class="btn" onclick="goToMalls()">Continue</button>
+    </div>
+  </div>
+
+  <script>
+    function useManualLocation() {
+      const loc = document.getElementById('manualLocation').value;
+      if (loc.trim() === "") {
+        alert("Please enter a location.");
+      } else {
+        document.getElementById('locationResult').innerText = "Location set to: " + loc;
+        localStorage.setItem("userLocation", loc);
+      }
+    }
+
+    function getCurrentLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude.toFixed(4);
+            const lon = position.coords.longitude.toFixed(4);
+            const result = `Current location: Latitude ${lat}, Longitude ${lon}`;
+            document.getElementById('locationResult').innerText = result;
+            localStorage.setItem("userLocation", result);
+          },
+          (error) => {
+            document.getElementById('locationResult').innerText =
+              "Failed to get location: " + error.message;
+          }
+        );
+      } else {
+        document.getElementById('locationResult').innerText =
+          "Geolocation is not supported by this browser.";
+      }
+    }
+
+    function goToMalls() {
+      const storedLoc = localStorage.getItem("userLocation");
+      if (!storedLoc) {
+        alert("Please select or enter a location before continuing.");
+        return;
+      }
+      window.location.href = "malls.html";
+    }
+  </script>
+</body>
+</html>
